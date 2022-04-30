@@ -14,5 +14,5 @@ https://github.com/kvazar-network/database
 
 #### crontab
 ```
-* * * * * /path-to/php /path-to/crawler-api-node/crawler.php
+* * * * * /path-to/php /path-to/crawler-api-node/crawler.php > /dev/null 2>&1
 ```
