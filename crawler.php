@@ -5,7 +5,7 @@ $semaphore = sem_get(1);
 if (false !== sem_acquire($semaphore, 1)) {
 
   require_once('config.php');
-  require_once('library/mysql.php');
+  require_once('library/sqlite.php');
   require_once('library/api.php');
   require_once('library/hash.php');
   require_once('library/base58.php');
@@ -13,7 +13,7 @@ if (false !== sem_acquire($semaphore, 1)) {
   require_once('library/crypto.php');
   require_once('library/helper.php');
 
-  $db  = new MySQL();
+  $db  = new SQLite();
   $api = new API();
 
   $blockLast  = $db->getLastBlock();
