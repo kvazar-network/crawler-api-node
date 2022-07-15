@@ -13,6 +13,14 @@ php-bcmath
 
 https://github.com/kvazar-network/database
 
+##### MySQL
+
+https://github.com/kvazar-network/crawler-api-node/tree/master
+
+##### SQLite
+
+https://github.com/kvazar-network/crawler-api-node/tree/sqlite
+
 #### crontab
 ```
 * * * * * /path-to/php /path-to/crawler-api-node/crawler.php > /dev/null 2>&1
