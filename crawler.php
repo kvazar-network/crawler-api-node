@@ -13,7 +13,7 @@ if (false !== sem_acquire($semaphore, 1)) {
   require_once('library/crypto.php');
   require_once('library/helper.php');
 
-  $db  = new SQLite();
+  $db  = new SQLite(DB_NAME, DB_USERNAME, DB_PASSWORD);
   $api = new API();
 
   $blockLast  = $db->getLastBlock();

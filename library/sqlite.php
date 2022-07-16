@@ -4,11 +4,11 @@ class SQLite {
 
   private $_db;
 
-  public function __construct($database, $username, $password) {
+  public function __construct(string $database, string $username, string $password) {
 
     try {
 
-      $this->_db = new PDO('sqlite:' . $database, $username, $password, [PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8']);
+      $this->_db = new PDO('sqlite:' . $database, $username, $password);
       $this->_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $this->_db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
       $this->_db->setAttribute(PDO::ATTR_TIMEOUT, 600);
@@ -75,7 +75,7 @@ class SQLite {
     }
   }
 
-  public function getBlock($blockId) {
+  public function getBlock(int $blockId) {
 
     try {
 
@@ -85,7 +85,7 @@ class SQLite {
 
       $result = $query->fetch();
 
-      return $result ? $result['blockId'] : false;
+      return $result ? $result['blockId'] : 0;
 
     } catch(PDOException $e) {
       trigger_error($e->getMessage());
@@ -93,7 +93,7 @@ class SQLite {
     }
   }
 
-  public function getNameSpace($hash) {
+  public function getNameSpace(string $hash) {
 
     try {
 
@@ -103,7 +103,7 @@ class SQLite {
 
       $result = $query->fetch();
 
-      return $result ? $result['nameSpaceId'] : false;
+      return $result ? $result['nameSpaceId'] : '';
 
     } catch(PDOException $e) {
       trigger_error($e->getMessage());
@@ -111,7 +111,7 @@ class SQLite {
     }
   }
 
-  public function getData($txId) {
+  public function getData(string $txId) {
 
     try {
 
@@ -121,7 +121,7 @@ class SQLite {
 
       $result = $query->fetch();
 
-      return $result ? $result['dataId'] : false;
+      return $result ? $result['dataId'] : 0;
 
     } catch(PDOException $e) {
       trigger_error($e->getMessage());
@@ -129,7 +129,7 @@ class SQLite {
     }
   }
 
-  public function addBlock($blockId) {
+  public function addBlock(int $blockId) {
 
     try {
 
@@ -146,7 +146,7 @@ class SQLite {
     }
   }
 
-  public function setLostTransactions($blockId, $lostTransactions) {
+  public function setLostTransactions(int $blockId, int $lostTransactions) {
 
     try {
 
@@ -162,7 +162,7 @@ class SQLite {
     }
   }
 
-  public function addNameSpace($hash) {
+  public function addNameSpace(string $hash) {
 
     try {
 
@@ -179,7 +179,7 @@ class SQLite {
     }
   }
 
-  public function addData($blockId, $nameSpaceId, $time, $size, $txid, $key, $value, $ns, $deleted = false) {
+  public function addData(int $blockId, int $nameSpaceId, int $time, int $size, string $txid, string $key, string $value, string $ns, bool $deleted = false) {
 
     try {
 
@@ -234,7 +234,7 @@ class SQLite {
     }
   }
 
-  public function setDataKeyDeleted($nameSpaceId, $key, $deleted) {
+  public function setDataKeyDeleted(int $nameSpaceId, string $key, bool $deleted) {
 
     try {
 
